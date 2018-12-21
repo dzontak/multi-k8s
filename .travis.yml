@@ -2,17 +2,19 @@ sudo: required
 services:
   - docker
 before_install:
-  - docker build -t denis/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t dzontak/react-test -f ./client/Dockerfile.dev ./client
 script:
-  - docker run denis/react-test npm test -- --coverage
+  - docker run dzontak/react-test npm test -- --coverage
 after_success:
-  - docker build -t denis/multi-client ./client
-  - docker build -t denis/multi-server ./server
-  - docker build -t denis/multi-worker ./worker
-  - docker build -t denis/multi-nginx ./nginx
+  - docker build -t dzontak/multi-client ./client
+  - docker build -t dzontak/multi-server ./server
+  - docker build -t dzontak/multi-worker ./worker
+  - docker build -t dzontak/multi-nginx ./nginx
   # login to docker hub
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-  - docker push denis/multi-client
-  - docker push denis/multi-server
-  - docker push denis/multi-worker
-  - docker push denis/multi-nginx
+  - docker push dzontak/multi-client
+  - docker push dzontak/multi-server
+  - docker push dzontak/multi-worker
+  - docker push dzontak/multi-nginx
+
+
