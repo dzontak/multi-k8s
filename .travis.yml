@@ -17,4 +17,14 @@ after_success:
   - docker push dzontak/multi-worker
   - docker push dzontak/multi-nginx
 
-
+deploy:
+  provider: elasticbeanstalk
+  region: us-east-2
+  app: docker-multi
+  env: DockerMulti-env
+  bucket_name: elasticbeanstalk-us-east-2-784308828437
+  bucket_path: docker-multi
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY

@@ -1,0 +1,38 @@
+{
+  "AWSEBDockerrunVersion": 2,
+  "containerDefinitions": [
+    {
+      "name": "client",
+      "image": "dzontak/multi-client",
+      "hostname": "client",
+      "essential": "false"
+    },
+    {
+      "name": "server",
+      "image": "dzontak/multi-server",
+      "hostname": "api",
+      "essential": "false"
+    },
+    {
+      "name": "worker",
+      "image": "dzontak/multi-worker",
+      "hostname": "worker",
+      "essential": "false"
+    },
+    {
+      "name": "nginx",
+      "image": "dzontak/multi-nginx",
+      "essential": "true",
+      "prortMappings": [
+        {
+          "hostPort": "80",
+          "containerPort": "80"
+        }
+      ],
+      "links": [
+        "client",
+        "server"
+      ]
+    }
+  ]
+}
