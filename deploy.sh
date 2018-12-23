@@ -15,9 +15,9 @@ docker push dzontak/multi-worker:$SHA
 
 kubectl apply -f ./k8s
 
-kubeclt set image deployments/server-deployment server=dzontak/multi-server:$SHA
-kubeclt set image deployments/client-deployment client=dzontak/multi-client:$SHA
-kubeclt set image deployments/worker-deployment worker=dzontak/multi-worker:$SHA
+kubectl set image deployments/server-deployment server=dzontak/multi-server:$SHA
+kubectl set image deployments/client-deployment client=dzontak/multi-client:$SHA
+kubectl set image deployments/worker-deployment worker=dzontak/multi-worker:$SHA
 
 
 
